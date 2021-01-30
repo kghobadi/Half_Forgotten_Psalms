@@ -56,7 +56,7 @@ public class Worker : RhythmProducer
             if (showRhythm)
             {
                 //play work sound
-                PlayRandomSoundRandomPitch(workingSounds, 1f);
+                PlayRandomSound(workingSounds, 1f);
                 
                 //get dist from player
                 float distFromPlayer = Vector3.Distance(transform.position, player.transform.position);

@@ -1273,6 +1273,7 @@ GameObject:
   - component: {fileID: 319444185}
   - component: {fileID: 319444184}
   - component: {fileID: 319444183}
+  - component: {fileID: 319444186}
   m_Layer: 0
   m_Name: Coal (3)
   m_TagString: Untagged
@@ -1352,6 +1353,22 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 319444181}
   m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!208 &319444186
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 319444181}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 0.5, y: 0.5, z: 0.5}
+  m_MoveThreshold: 0.1
+  m_Carve: 1
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 0, y: 0, z: 0}
+  m_TimeToStationary: 0.5
 --- !u!1 &323041720
 GameObject:
   m_ObjectHideFlags: 0
@@ -3079,6 +3096,7 @@ GameObject:
   - component: {fileID: 697700246}
   - component: {fileID: 697700245}
   - component: {fileID: 697700244}
+  - component: {fileID: 697700247}
   m_Layer: 0
   m_Name: Coal (1)
   m_TagString: Untagged
@@ -3158,6 +3176,22 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 697700242}
   m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!208 &697700247
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 697700242}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 0.5, y: 0.5, z: 0.5}
+  m_MoveThreshold: 0.1
+  m_Carve: 1
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 0, y: 0, z: 0}
+  m_TimeToStationary: 0.5
 --- !u!1 &711129565
 GameObject:
   m_ObjectHideFlags: 0
@@ -4269,6 +4303,7 @@ GameObject:
   - component: {fileID: 912026686}
   - component: {fileID: 912026685}
   - component: {fileID: 912026684}
+  - component: {fileID: 912026687}
   m_Layer: 0
   m_Name: Coal (11)
   m_TagString: Untagged
@@ -4348,6 +4383,22 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 912026682}
   m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!208 &912026687
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 912026682}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 0.5, y: 0.5, z: 0.5}
+  m_MoveThreshold: 0.1
+  m_Carve: 1
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 0, y: 0, z: 0}
+  m_TimeToStationary: 0.5
 --- !u!1 &938028208
 GameObject:
   m_ObjectHideFlags: 0
@@ -5485,6 +5536,7 @@ GameObject:
   - component: {fileID: 1135820981}
   - component: {fileID: 1135820980}
   - component: {fileID: 1135820979}
+  - component: {fileID: 1135820983}
   m_Layer: 0
   m_Name: Coal
   m_TagString: Untagged
@@ -5564,6 +5616,22 @@ Transform:
   m_Father: {fileID: 2091072698}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!208 &1135820983
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1135820978}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 0.5, y: 0.5, z: 0.5}
+  m_MoveThreshold: 0.1
+  m_Carve: 1
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 0, y: 0, z: 0}
+  m_TimeToStationary: 0.5
 --- !u!1 &1193240266
 GameObject:
   m_ObjectHideFlags: 0
@@ -5667,6 +5735,7 @@ GameObject:
   - component: {fileID: 1201327503}
   - component: {fileID: 1201327502}
   - component: {fileID: 1201327501}
+  - component: {fileID: 1201327504}
   m_Layer: 0
   m_Name: Coal (10)
   m_TagString: Untagged
@@ -5746,6 +5815,22 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1201327499}
   m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!208 &1201327504
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1201327499}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 0.5, y: 0.5, z: 0.5}
+  m_MoveThreshold: 0.1
+  m_Carve: 1
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 0, y: 0, z: 0}
+  m_TimeToStationary: 0.5
 --- !u!1 &1210697064
 GameObject:
   m_ObjectHideFlags: 0
@@ -6832,6 +6917,7 @@ GameObject:
   - component: {fileID: 1574242255}
   - component: {fileID: 1574242254}
   - component: {fileID: 1574242253}
+  - component: {fileID: 1574242257}
   m_Layer: 0
   m_Name: Coal (9)
   m_TagString: Untagged
@@ -6911,6 +6997,22 @@ Transform:
   m_Father: {fileID: 2091072698}
   m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!208 &1574242257
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1574242252}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 0.5, y: 0.5, z: 0.5}
+  m_MoveThreshold: 0.1
+  m_Carve: 1
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 0, y: 0, z: 0}
+  m_TimeToStationary: 0.5
 --- !u!1 &1581544162
 GameObject:
   m_ObjectHideFlags: 0
@@ -7269,7 +7371,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1620616827}
-  m_LocalRotation: {x: 0.1237294, y: -0.51790607, z: 0.07601247, w: 0.8430223}
+  m_LocalRotation: {x: 0.1237294, y: -0.51790595, z: 0.07601244, w: 0.84302235}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -8386,6 +8488,7 @@ GameObject:
   - component: {fileID: 1839719157}
   - component: {fileID: 1839719156}
   - component: {fileID: 1839719155}
+  - component: {fileID: 1839719158}
   m_Layer: 0
   m_Name: Coal (6)
   m_TagString: Untagged
@@ -8465,6 +8568,22 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1839719153}
   m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!208 &1839719158
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1839719153}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 0.5, y: 0.5, z: 0.5}
+  m_MoveThreshold: 0.1
+  m_Carve: 1
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 0, y: 0, z: 0}
+  m_TimeToStationary: 0.5
 --- !u!1 &1859956491
 GameObject:
   m_ObjectHideFlags: 0
@@ -8807,7 +8926,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1934723970}
-  m_LocalRotation: {x: 0.093025, y: -0.52032536, z: 0.057149384, w: 0.84696037}
+  m_LocalRotation: {x: 0.09302501, y: -0.52032536, z: 0.057149377, w: 0.8469604}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -9009,6 +9128,7 @@ GameObject:
   - component: {fileID: 1968523774}
   - component: {fileID: 1968523773}
   - component: {fileID: 1968523772}
+  - component: {fileID: 1968523775}
   m_Layer: 0
   m_Name: Coal (2)
   m_TagString: Untagged
@@ -9088,6 +9208,22 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1968523770}
   m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!208 &1968523775
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1968523770}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 0.5, y: 0.5, z: 0.5}
+  m_MoveThreshold: 0.1
+  m_Carve: 1
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 0, y: 0, z: 0}
+  m_TimeToStationary: 0.5
 --- !u!1 &1974414653
 GameObject:
   m_ObjectHideFlags: 0
@@ -9615,6 +9751,7 @@ GameObject:
   - component: {fileID: 2058335358}
   - component: {fileID: 2058335357}
   - component: {fileID: 2058335356}
+  - component: {fileID: 2058335360}
   m_Layer: 0
   m_Name: Coal (5)
   m_TagString: Untagged
@@ -9694,6 +9831,22 @@ Transform:
   m_Father: {fileID: 2091072698}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!208 &2058335360
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2058335355}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 0.5, y: 0.5, z: 0.5}
+  m_MoveThreshold: 0.1
+  m_Carve: 1
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 0, y: 0, z: 0}
+  m_TimeToStationary: 0.5
 --- !u!1 &2063260287
 GameObject:
   m_ObjectHideFlags: 0
@@ -9797,6 +9950,7 @@ GameObject:
   - component: {fileID: 2074086662}
   - component: {fileID: 2074086661}
   - component: {fileID: 2074086660}
+  - component: {fileID: 2074086663}
   m_Layer: 0
   m_Name: Coal (4)
   m_TagString: Untagged
@@ -9876,6 +10030,22 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2074086658}
   m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!208 &2074086663
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2074086658}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 0.5, y: 0.5, z: 0.5}
+  m_MoveThreshold: 0.1
+  m_Carve: 1
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 0, y: 0, z: 0}
+  m_TimeToStationary: 0.5
 --- !u!1 &2074814225
 GameObject:
   m_ObjectHideFlags: 0
@@ -10073,6 +10243,7 @@ GameObject:
   - component: {fileID: 2088394072}
   - component: {fileID: 2088394071}
   - component: {fileID: 2088394070}
+  - component: {fileID: 2088394073}
   m_Layer: 0
   m_Name: Coal (7)
   m_TagString: Untagged
@@ -10152,6 +10323,22 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2088394068}
   m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!208 &2088394073
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2088394068}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 0.5, y: 0.5, z: 0.5}
+  m_MoveThreshold: 0.1
+  m_Carve: 1
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 0, y: 0, z: 0}
+  m_TimeToStationary: 0.5
 --- !u!1 &2090484701
 GameObject:
   m_ObjectHideFlags: 0
@@ -10341,6 +10528,7 @@ GameObject:
   - component: {fileID: 2108867708}
   - component: {fileID: 2108867707}
   - component: {fileID: 2108867706}
+  - component: {fileID: 2108867709}
   m_Layer: 0
   m_Name: Coal (8)
   m_TagString: Untagged
@@ -10420,6 +10608,22 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2108867704}
   m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!208 &2108867709
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2108867704}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 0.5, y: 0.5, z: 0.5}
+  m_MoveThreshold: 0.1
+  m_Carve: 1
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 0, y: 0, z: 0}
+  m_TimeToStationary: 0.5
 --- !u!1 &2110024685
 GameObject:
   m_ObjectHideFlags: 0
