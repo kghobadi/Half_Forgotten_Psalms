@@ -29,10 +29,13 @@ public class Worker : RhythmProducer
     public FollowerPoint followPoint;
     public GameObject workObject;
     public float followingRange = 25f;
+    public GameObject pickAx;
 
     [Header("Voices & Singing")] 
     public AudioClip[] workingSounds;
     public AudioClip[] followingSounds;
+    public ParticleSystem musicNotesWorking;
+    public ParticleSystem musicNotesFollowing;
     
     void Start()
     {
@@ -56,7 +59,11 @@ public class Worker : RhythmProducer
             if (showRhythm)
             {
                 //play work sound
-                PlayRandomSound(workingSounds, 1f);
+                PlayRandomSound(workingSounds, 0.25f);
+                
+                //play particles :)
+                if(musicNotesWorking)
+                    musicNotesWorking.Play();
                 
                 //get dist from player
                 float distFromPlayer = Vector3.Distance(transform.position, player.transform.position);
@@ -86,11 +93,7 @@ public class Worker : RhythmProducer
                 //time to return to work :'(
                 if (distFromPlayer > followingRange)
                 {
-                    NavigateTo(origPosition, WorkerStates.RETURNING);
-                    
-                    //reset follow point 
-                    followPoint.SetOccupied(false);
-                    followPoint = null;
+                    SetReturning();
                 }
                 //keep following!
                 else
@@ -126,18 +129,22 @@ public class Worker : RhythmProducer
                 //play following sound
                 PlayRandomSound(followingSounds, 1f);
                 
+                //play particles :)
+                if(musicNotesFollowing)
+                    musicNotesFollowing.Play();
+                
                 //get dist
                 float distFromPoint = Vector3.Distance(transform.position, followPoint.transform.position);
 
                 //set idle, i am too far from the music
-                if (distFromPoint > followingRange)
+                if (distFromPoint > followingRange + 5f)
                 {
                     SetIdle();
                 }
                 //keep following my point
                 else
                 {
-                    Debug.Log("still following!");
+                    //Debug.Log("still following!");
                     //nav
                     NavigateTo(followPoint.transform.position, WorkerStates.FOLLOWING);
                 }
@@ -150,12 +157,17 @@ public class Worker : RhythmProducer
     //called from within working to follow player
     public void SetFollowing()
     {
+        //set animation
+        if(npcAnimations)
+            npcAnimations.SetAnimator("following");
         //get follow point
         followPoint = _followerPoints.FindValidPoint();
         //navigate!
         NavigateTo(followPoint.transform.position, WorkerStates.FOLLOWING);
         //set occupied
         followPoint.SetOccupied(true);
+        //turnoff pickax
+        pickAx.SetActive(false);
     }
 
     //stops movement
@@ -163,12 +175,23 @@ public class Worker : RhythmProducer
     {
         //stop nav mesh
         myNavMesh.isStopped = true;
-        //anim
-        if(npcAnimations)
-            npcAnimations.SetAnimator("idle");
+        
         //set state
         workerState = WorkerStates.IDLE;
         Debug.Log(gameObject.name + " is Idling...");
+    }
+
+    //return to work point
+    public void SetReturning()
+    {
+        NavigateTo(origPosition, WorkerStates.RETURNING);
+        //anim
+        if(npcAnimations)
+            npcAnimations.SetAnimator("returning");
+                    
+        //reset follow point 
+        followPoint.SetOccupied(false);
+        followPoint = null;
     }
 
     //set back to work
@@ -181,6 +204,8 @@ public class Worker : RhythmProducer
             npcAnimations.SetAnimator("working");
         //set state
         workerState = WorkerStates.WORKING;
+        //turnon pickax
+        pickAx.SetActive(true);
     }
 
     //base function for actually navigating to a point 
@@ -204,10 +229,6 @@ public class Worker : RhythmProducer
         //start moving nav mesh
         myNavMesh.SetDestination(targetPosition);
         myNavMesh.isStopped = false;
-        
-        //set animation
-        if(npcAnimations)
-            npcAnimations.SetAnimator("moving");
         
         //set state
         workerState = newState;
