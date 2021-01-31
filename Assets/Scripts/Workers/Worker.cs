@@ -59,7 +59,7 @@ public class Worker : RhythmProducer
             if (showRhythm)
             {
                 //play work sound
-                PlayRandomSound(workingSounds, 0.25f);
+                PlayRandomSound(workingSounds, 0.1f);
                 
                 //play particles :)
                 if(musicNotesWorking)

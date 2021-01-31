@@ -19,6 +19,7 @@ public class Boss : RhythmProducer
     public int conflictBeats = 0;
     public int beatsNec = 8;
     public GameCamera endingShot;
+    public FadeUI victory;
     public bool hasEnded;
     
     [Header("Boss Audio")] 
@@ -123,6 +124,8 @@ public class Boss : RhythmProducer
         _cameraManager.Set(endingShot);
         //roll that cat!
         _animations.SetAnimator("victory");
+        //victory text
+        victory.FadeIn();
 
         //make the workers dance!!!
         for (int i = 0; i < nearbyWorkers.Count; i++)
