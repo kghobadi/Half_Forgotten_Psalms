@@ -25,7 +25,7 @@ public abstract class RhythmProducer : AudioHandler {
     public void RandomizeTimeScale()
     {
         //get random int
-        int newTime = UnityEngine.Random.Range(0, 10);
+        int newTime = UnityEngine.Random.Range(1, 10);
         //set new time scale
         switch (newTime)
         {

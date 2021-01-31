@@ -14,40 +14,39 @@ public class GuitarController : RhythmProducer
     public AudioClip[] Gchords;
     public AudioClip[] Bchords;
     public AudioClip[] Cchords;
+    public AudioClip[] Achords;
     
     [Header("Guitar Inputs")] 
     public bool playerInputting;
-    int keyPresses = 0;
+    public int keyPresses = 0;
     public KeyCode[] inputKeys;
-    private List<KeyCode> currentKeys = new List<KeyCode>();
+    public List<KeyCode> currentKeys = new List<KeyCode>();
     
     public Chords currentChord;
     public enum Chords
     {
-        E, F, G, B, C,
-    }
-    
-    void Start()
-    {
-        
+        E, F, G, B, C, A
     }
 
     void Update()
     {
+        //take inputs
         GuitarInputs();
         
         //on beat
         if (showRhythm)
         {
+            //always play open notes
+            PlayOpenNotes();
+            
             //check inputting
             if (playerInputting)
             {
                 AnalyzeInputs();
             }
-            else
-            {
-                PlayOpenNotes();
-            }
+            
+            //clear the current keys list
+            currentKeys.Clear();
         }
     }
 
@@ -56,17 +55,36 @@ public class GuitarController : RhythmProducer
     /// </summary>
     void GuitarInputs()
     {
-        //no key presses  -- clear keys list
+        //no key presses 
         keyPresses = 0;
-        currentKeys.Clear();
 
         //loop through all input keys
         for (int i = 0; i < inputKeys.Length; i++)
         {
-            if (Input.GetKey(inputKeys[i]))
+            //check if key is just pressed down
+            if (Input.GetKeyDown(inputKeys[i]))
             {
-                currentKeys.Add(inputKeys[i]);
+                //only add if not already added
+                if(currentKeys.Contains(inputKeys[i]) == false)
+                    currentKeys.Add(inputKeys[i]);
                 keyPresses++;
+            }
+            
+            //check if key held
+            if (Input.GetKey(inputKeys[i]))
+            {   
+                //only add if not already added
+                if(currentKeys.Contains(inputKeys[i]) == false)
+                    currentKeys.Add(inputKeys[i]);
+                keyPresses++;
+            }
+            
+            //check if key released
+            if (Input.GetKeyUp(inputKeys[i]))
+            {
+                //remove the key since its being released
+                if(currentKeys.Contains(inputKeys[i]))
+                    currentKeys.Remove(inputKeys[i]);
             }
         }
         
@@ -99,7 +117,7 @@ public class GuitarController : RhythmProducer
                     PlayChords(Chords.F);
                     break;
                 case KeyCode.U :
-                    PlayChords(Chords.E);
+                    PlayChords(Chords.A);
                     break;
                 case KeyCode.G :
                     PlayChords(Chords.G);
@@ -124,19 +142,22 @@ public class GuitarController : RhythmProducer
         switch (chordCombo)
         {
             case Chords.E:
-                PlayRandomSound(Echords, 1f);
+                PlaySoundMultipleAudioSources(Echords);
                 break;
             case Chords.F:
-                PlayRandomSound(Fchords, 1f);
+                PlaySoundMultipleAudioSources(Fchords);
                 break;
             case Chords.G:
-                PlayRandomSound(Gchords, 1f);
+                PlaySoundMultipleAudioSources(Gchords);
                 break;
             case Chords.B:
-                PlayRandomSound(Bchords, 1f);
+                PlaySoundMultipleAudioSources(Bchords);
                 break;
             case Chords.C:
-                PlayRandomSound(Cchords, 1f);
+                PlaySoundMultipleAudioSources(Cchords);
+                break;
+            case Chords.A:
+                PlaySoundMultipleAudioSources(Achords);
                 break;
         }
 
@@ -146,7 +167,7 @@ public class GuitarController : RhythmProducer
 
     void PlayOpenNotes()
     {
-        PlayRandomSound(openNotes, 1f);
+        PlaySoundMultipleAudioSources(openNotes);
         showRhythm = false;
     }
 }
