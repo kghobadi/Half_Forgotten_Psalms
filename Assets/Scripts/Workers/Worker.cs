@@ -33,6 +33,8 @@ public class Worker : RhythmProducer
     [Header("Voices & Singing")] 
     public AudioClip[] workingSounds;
     public AudioClip[] followingSounds;
+    public ParticleSystem musicNotesWorking;
+    public ParticleSystem musicNotesFollowing;
     
     void Start()
     {
@@ -57,6 +59,10 @@ public class Worker : RhythmProducer
             {
                 //play work sound
                 PlayRandomSound(workingSounds, 0.25f);
+                
+                //play particles :)
+                if(musicNotesWorking)
+                    musicNotesWorking.Play();
                 
                 //get dist from player
                 float distFromPlayer = Vector3.Distance(transform.position, player.transform.position);
@@ -126,11 +132,15 @@ public class Worker : RhythmProducer
                 //play following sound
                 PlayRandomSound(followingSounds, 1f);
                 
+                //play particles :)
+                if(musicNotesFollowing)
+                    musicNotesFollowing.Play();
+                
                 //get dist
                 float distFromPoint = Vector3.Distance(transform.position, followPoint.transform.position);
 
                 //set idle, i am too far from the music
-                if (distFromPoint > followingRange)
+                if (distFromPoint > followingRange + 5f)
                 {
                     SetIdle();
                 }

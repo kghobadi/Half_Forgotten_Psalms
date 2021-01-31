@@ -68,6 +68,7 @@ ModelImporter:
     400060: mixamorig:Spine1
     400062: mixamorig:Spine2
     2100000: No Name
+    2100002: phong1
     4300000: Mesh.005_rdmobj05
     4300002: Mesh.004_rdmobj04
     4300004: Mesh.003_rdmobj01
@@ -75,6 +76,7 @@ ModelImporter:
     4300008: Mesh.001_rdmobj03
     4300010: Mesh_rdmobj02
     7400000: mixamo.com
+    7400002: Take 001
     9500000: //RootNode
     13700000: Mesh.001_rdmobj03
     13700002: Mesh.002_rdmobj00
