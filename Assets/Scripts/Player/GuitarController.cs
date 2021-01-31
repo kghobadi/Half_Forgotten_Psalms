@@ -12,14 +12,19 @@ public class GuitarController : RhythmProducer
     public AudioClip[] Echords;
     public AudioClip[] Fchords;
     public AudioClip[] Gchords;
+    public AudioClip[] Bchords;
+    public AudioClip[] Cchords;
     
     [Header("Guitar Inputs")] 
     public bool playerInputting;
-
+    int keyPresses = 0;
+    public KeyCode[] inputKeys;
+    private List<KeyCode> currentKeys = new List<KeyCode>();
+    
     public Chords currentChord;
     public enum Chords
     {
-        E, F, G, 
+        E, F, G, B, C,
     }
     
     void Start()
@@ -31,11 +36,13 @@ public class GuitarController : RhythmProducer
     {
         GuitarInputs();
         
+        //on beat
         if (showRhythm)
         {
+            //check inputting
             if (playerInputting)
             {
-                PlayChords(currentChord);
+                AnalyzeInputs();
             }
             else
             {
@@ -44,31 +51,23 @@ public class GuitarController : RhythmProducer
         }
     }
 
+    /// <summary>
+    /// Gather the guitar's inputs and tell us if player is inputting
+    /// </summary>
     void GuitarInputs()
     {
-        //no key presses 
-        int keyPresses = 0;
-        
-        //inputs
-        if (Input.GetKey(KeyCode.T))
-        {
-            currentChord = Chords.E;
+        //no key presses  -- clear keys list
+        keyPresses = 0;
+        currentKeys.Clear();
 
-            keyPresses++;
-        }
-        //inputs
-        if (Input.GetKey(KeyCode.Y))
+        //loop through all input keys
+        for (int i = 0; i < inputKeys.Length; i++)
         {
-            currentChord = Chords.F;
-
-            keyPresses++;
-        }
-        //inputs
-        if (Input.GetKey(KeyCode.U))
-        {
-            currentChord = Chords.G;
-
-            keyPresses++;
+            if (Input.GetKey(inputKeys[i]))
+            {
+                currentKeys.Add(inputKeys[i]);
+                keyPresses++;
+            }
         }
         
         //are we inputting?
@@ -82,6 +81,44 @@ public class GuitarController : RhythmProducer
         }
     }
 
+    /// <summary>
+    /// Decide how to respond to player's inputs
+    /// </summary>
+    void AnalyzeInputs()
+    {
+        //loop through currently press keys
+        for (int i = 0; i < currentKeys.Count; i++)
+        {
+            //play the chord array according to the pressed key
+            switch (currentKeys[i])
+            {
+                case KeyCode.T :
+                    PlayChords(Chords.E);
+                    break;
+                case KeyCode.Y :
+                    PlayChords(Chords.F);
+                    break;
+                case KeyCode.U :
+                    PlayChords(Chords.E);
+                    break;
+                case KeyCode.G :
+                    PlayChords(Chords.G);
+                    break;
+                case KeyCode.H :
+                    PlayChords(Chords.B);
+                    break;
+                case KeyCode.J :
+                    PlayChords(Chords.C);
+                    break;
+            }
+            
+        }
+    }
+
+    /// <summary>
+    /// Plays the correct audio array according to the passed Chord type. 
+    /// </summary>
+    /// <param name="chordCombo"></param>
     void PlayChords(Chords chordCombo)
     {
         switch (chordCombo)
@@ -95,8 +132,15 @@ public class GuitarController : RhythmProducer
             case Chords.G:
                 PlayRandomSound(Gchords, 1f);
                 break;
+            case Chords.B:
+                PlayRandomSound(Bchords, 1f);
+                break;
+            case Chords.C:
+                PlayRandomSound(Cchords, 1f);
+                break;
         }
 
+        currentChord = chordCombo;
         showRhythm = false;
     }
 
