@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: ad027db234f93468cb86c501b24e6459
+guid: 4ce781fc65f9048169bc04d8bfdf6ccf
 ModelImporter:
   serializedVersion: 23
   fileIDToRecycleName:
@@ -73,7 +73,7 @@ ModelImporter:
     400064: mixamorig:Spine1
     400066: mixamorig:Spine2
     400068: pCube8
-    2100000: lambert1
+    2100000: lambert2
     4300000: pCube8
     7400000: mixamo.com
     9500000: //RootNode
