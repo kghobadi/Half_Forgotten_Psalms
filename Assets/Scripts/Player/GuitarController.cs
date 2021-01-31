@@ -28,6 +28,9 @@ public class GuitarController : RhythmProducer
         E, F, G, B, C, A
     }
 
+    [Header("UI")] 
+    public FadeUI[] guitarUI;
+    
     void Update()
     {
         //take inputs
@@ -43,6 +46,15 @@ public class GuitarController : RhythmProducer
             if (playerInputting)
             {
                 AnalyzeInputs();
+
+                //fade out guitar UI after input
+                if (guitarUI[0].gameObject.activeSelf)
+                {
+                    for (int i = 0; i < guitarUI.Length; i++)
+                    {
+                        guitarUI[i].FadeOut();
+                    }
+                }
             }
             
             //clear the current keys list

@@ -14,6 +14,10 @@ public class PlayerMovement : MonoBehaviour
     public CinemachineVirtualCameraBase cvCamera;
 
     private Camera mainCam;
+
+    [Header("UI")] 
+    public FadeUI[] movementUI;
+    public FadeUI[] camUI;
     
     void Start()
     {
@@ -24,6 +28,8 @@ public class PlayerMovement : MonoBehaviour
     void Update()
     {
         MoveInputs();
+        
+        CameraInputs();
     }
 
     void MoveInputs()
@@ -42,6 +48,18 @@ public class PlayerMovement : MonoBehaviour
         //add the vectors together
         movement = fwd + side + grav;
         
+        //fade out movement ui
+        if (fwd.magnitude != 0 || side.magnitude != 0)
+        {
+            if (movementUI[0].gameObject.activeSelf)
+            {
+                for (int i = 0; i < movementUI.Length; i++)
+                {
+                    movementUI[i].FadeOut();
+                }
+            }
+        }
+        
         //actually move char 
         charController.Move(movement * Time.deltaTime );
     }
@@ -50,5 +68,17 @@ public class PlayerMovement : MonoBehaviour
     {
         float moveX = Input.GetAxis("Mouse X");
         float moveY = Input.GetAxis("Mouse Y");
+
+        //fade out cam UI
+        if (moveX != 0 || moveY != 0)
+        {
+            if (camUI[0].gameObject.activeSelf && Time.time > 2f)
+            {
+                for (int i = 0; i < camUI.Length; i++)
+                {
+                    camUI[i].FadeOut();
+                }
+            }
+        }
     }
 }
