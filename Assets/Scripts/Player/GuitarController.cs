@@ -14,17 +14,18 @@ public class GuitarController : RhythmProducer
     public AudioClip[] Gchords;
     public AudioClip[] Bchords;
     public AudioClip[] Cchords;
+    public AudioClip[] Achords;
     
     [Header("Guitar Inputs")] 
     public bool playerInputting;
     int keyPresses = 0;
     public KeyCode[] inputKeys;
-    private List<KeyCode> currentKeys = new List<KeyCode>();
+    public List<KeyCode> currentKeys = new List<KeyCode>();
     
     public Chords currentChord;
     public enum Chords
     {
-        E, F, G, B, C,
+        E, F, G, B, C, A
     }
     
     void Start()
@@ -99,7 +100,7 @@ public class GuitarController : RhythmProducer
                     PlayChords(Chords.F);
                     break;
                 case KeyCode.U :
-                    PlayChords(Chords.E);
+                    PlayChords(Chords.A);
                     break;
                 case KeyCode.G :
                     PlayChords(Chords.G);
@@ -124,19 +125,22 @@ public class GuitarController : RhythmProducer
         switch (chordCombo)
         {
             case Chords.E:
-                PlayRandomSound(Echords, 1f);
+                PlaySoundMultipleAudioSources(Echords);
                 break;
             case Chords.F:
-                PlayRandomSound(Fchords, 1f);
+                PlaySoundMultipleAudioSources(Fchords);
                 break;
             case Chords.G:
-                PlayRandomSound(Gchords, 1f);
+                PlaySoundMultipleAudioSources(Gchords);
                 break;
             case Chords.B:
-                PlayRandomSound(Bchords, 1f);
+                PlaySoundMultipleAudioSources(Bchords);
                 break;
             case Chords.C:
-                PlayRandomSound(Cchords, 1f);
+                PlaySoundMultipleAudioSources(Cchords);
+                break;
+            case Chords.A:
+                PlaySoundMultipleAudioSources(Achords);
                 break;
         }
 
