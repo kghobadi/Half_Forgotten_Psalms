@@ -18,7 +18,7 @@ public class GuitarController : RhythmProducer
     
     [Header("Guitar Inputs")] 
     public bool playerInputting;
-    int keyPresses = 0;
+    public int keyPresses = 0;
     public KeyCode[] inputKeys;
     public List<KeyCode> currentKeys = new List<KeyCode>();
     
@@ -27,14 +27,10 @@ public class GuitarController : RhythmProducer
     {
         E, F, G, B, C, A
     }
-    
-    void Start()
-    {
-        
-    }
 
     void Update()
     {
+        //take inputs
         GuitarInputs();
         
         //on beat
@@ -49,6 +45,9 @@ public class GuitarController : RhythmProducer
             {
                 PlayOpenNotes();
             }
+            
+            //clear the current keys list
+            currentKeys.Clear();
         }
     }
 
@@ -57,17 +56,36 @@ public class GuitarController : RhythmProducer
     /// </summary>
     void GuitarInputs()
     {
-        //no key presses  -- clear keys list
+        //no key presses 
         keyPresses = 0;
-        currentKeys.Clear();
 
         //loop through all input keys
         for (int i = 0; i < inputKeys.Length; i++)
         {
-            if (Input.GetKey(inputKeys[i]))
+            //check if key is just pressed down
+            if (Input.GetKeyDown(inputKeys[i]))
             {
-                currentKeys.Add(inputKeys[i]);
+                //only add if not already added
+                if(currentKeys.Contains(inputKeys[i]) == false)
+                    currentKeys.Add(inputKeys[i]);
                 keyPresses++;
+            }
+            
+            //check if key held
+            if (Input.GetKey(inputKeys[i]))
+            {   
+                //only add if not already added
+                if(currentKeys.Contains(inputKeys[i]) == false)
+                    currentKeys.Add(inputKeys[i]);
+                keyPresses++;
+            }
+            
+            //check if key released
+            if (Input.GetKeyUp(inputKeys[i]))
+            {
+                //remove the key since its being released
+                if(currentKeys.Contains(inputKeys[i]))
+                    currentKeys.Remove(inputKeys[i]);
             }
         }
         
@@ -150,7 +168,7 @@ public class GuitarController : RhythmProducer
 
     void PlayOpenNotes()
     {
-        PlayRandomSound(openNotes, 1f);
+        PlaySoundMultipleAudioSources(openNotes);
         showRhythm = false;
     }
 }

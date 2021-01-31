@@ -137,7 +137,7 @@ public class Worker : RhythmProducer
                 //keep following my point
                 else
                 {
-                    Debug.Log("still following!");
+                    //Debug.Log("still following!");
                     //nav
                     NavigateTo(followPoint.transform.position, WorkerStates.FOLLOWING);
                 }
