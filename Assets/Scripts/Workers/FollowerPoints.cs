@@ -4,11 +4,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Random = System.Random;
-
+using UnityEngine.Audio;
 public class FollowerPoints : MonoBehaviour
 {
     public FollowerPoint[] allFollowerPoints;
-
+    public AudioMixer mixer;
+    
     private void Awake()
     {
         //fetch all follower points in children 
@@ -34,5 +35,19 @@ public class FollowerPoints : MonoBehaviour
         int randomPoint = UnityEngine.Random.Range(0, allFollowerPoints.Length);
 
         return allFollowerPoints[randomPoint];
+    }
+
+    public void IncreaseWorkerVolume()
+    {
+        float vol = 0;
+        mixer.GetFloat("WorkerVol", out vol);
+        mixer.SetFloat("WorkerVol", vol + 1f);
+    }
+    
+    public void DecreaseWorkerVolume()
+    {
+        float vol = 0;
+        mixer.GetFloat("WorkerVol", out vol);
+        mixer.SetFloat("WorkerVol", vol - 1f);
     }
 }

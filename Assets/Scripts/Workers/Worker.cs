@@ -17,7 +17,7 @@ public class Worker : RhythmProducer
     public WorkerStates workerState;
     public enum WorkerStates
     {
-        IDLE, WORKING, FOLLOWING, RETURNING,
+        IDLE, WORKING, FOLLOWING, RETURNING, DANCING,
     }
     public LayerMask grounded;
     [HideInInspector]
@@ -112,7 +112,7 @@ public class Worker : RhythmProducer
             //stop running after we are close to position
             if (Vector3.Distance(transform.position, targetPosition) < myNavMesh.stoppingDistance + 1f)
             {
-                Debug.Log(gameObject.name + " returned to work");
+                //Debug.Log(gameObject.name + " returned to work");
                 SetWorking();
             }
         }
@@ -152,6 +152,23 @@ public class Worker : RhythmProducer
                 showRhythm = false;
             }
         }
+        
+        //DANCING -- ending celebration
+        if (workerState == WorkerStates.DANCING)
+        {
+            //on beat, play sound & check our distance from target and what should be my next move
+            if (showRhythm)
+            {
+                //play following sound
+                PlayRandomSound(followingSounds, 1f);
+                
+                //play particles :)
+                if(musicNotesFollowing)
+                    musicNotesFollowing.Play();
+                
+                showRhythm = false;
+            }
+        }
     }
 
     //called from within working to follow player
@@ -168,6 +185,9 @@ public class Worker : RhythmProducer
         followPoint.SetOccupied(true);
         //turnoff pickax
         pickAx.SetActive(false);
+        
+        //decrease worker vol
+        _followerPoints.DecreaseWorkerVolume();
     }
 
     //stops movement
@@ -178,7 +198,7 @@ public class Worker : RhythmProducer
         
         //set state
         workerState = WorkerStates.IDLE;
-        Debug.Log(gameObject.name + " is Idling...");
+        //Debug.Log(gameObject.name + " is Idling...");
     }
 
     //return to work point
@@ -190,8 +210,14 @@ public class Worker : RhythmProducer
             npcAnimations.SetAnimator("returning");
                     
         //reset follow point 
-        followPoint.SetOccupied(false);
-        followPoint = null;
+        if (followPoint)
+        {
+            followPoint.SetOccupied(false);
+            followPoint = null;
+        }
+        
+        //increase worker vol
+        _followerPoints.IncreaseWorkerVolume();
     }
 
     //set back to work
@@ -206,6 +232,18 @@ public class Worker : RhythmProducer
         workerState = WorkerStates.WORKING;
         //turnon pickax
         pickAx.SetActive(true);
+    }
+
+    //called upon victory
+    public void SetDancing()
+    {
+        //stop nav mesh
+        myNavMesh.isStopped = true;
+        //anim
+        if(npcAnimations)
+            npcAnimations.SetAnimator("dancing");
+        //set state
+        workerState = WorkerStates.DANCING;
     }
 
     //base function for actually navigating to a point 
