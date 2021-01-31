@@ -36,14 +36,13 @@ public class GuitarController : RhythmProducer
         //on beat
         if (showRhythm)
         {
+            //always play open notes
+            PlayOpenNotes();
+            
             //check inputting
             if (playerInputting)
             {
                 AnalyzeInputs();
-            }
-            else
-            {
-                PlayOpenNotes();
             }
             
             //clear the current keys list
