@@ -11,30 +11,35 @@ using Random = System.Random;
 /// </summary>
 public class Worker : RhythmProducer
 {
+    private GuitarController _guitarController;
     private FollowerPoints _followerPoints;
     NPC.Animations npcAnimations;
     [Header("AI Settings")]
     public WorkerStates workerState;
     public enum WorkerStates
     {
-        IDLE, WORKING, FOLLOWING, RETURNING, DANCING,
+        IDLE, WORKING, LISTENING, FOLLOWING, RETURNING, DANCING,
     }
     public LayerMask grounded;
     [HideInInspector]
     public NavMeshAgent myNavMesh;
     Vector3 origPosition;
     Vector3 targetPosition;
+    private float distFromPlayer;
     public float lookSmooth = 1f;
     public bool navOnStart;
     public FollowerPoint followPoint;
     public GameObject workObject;
     public float followingRange = 25f;
     public GameObject pickAx;
+    public int listeningBeats = 0;
+    public int listeningBeatsNecessary = 4;
 
     [Header("Voices & Singing")] 
     public AudioClip[] workingSounds;
     public AudioClip[] followingSounds;
     public ParticleSystem musicNotesWorking;
+    public ParticleSystem musicNotesListening;
     public ParticleSystem musicNotesFollowing;
     
     void Start()
@@ -42,6 +47,7 @@ public class Worker : RhythmProducer
         _followerPoints = FindObjectOfType<FollowerPoints>();
         myNavMesh = GetComponent<NavMeshAgent>();
         npcAnimations = GetComponentInChildren<NPC.Animations>();
+        _guitarController = FindObjectOfType<GuitarController>();
         
         origPosition = transform.position;
         SetWorking();
@@ -66,12 +72,50 @@ public class Worker : RhythmProducer
                     musicNotesWorking.Play();
                 
                 //get dist from player
-                float distFromPlayer = Vector3.Distance(transform.position, player.transform.position);
+                distFromPlayer = Vector3.Distance(transform.position, player.transform.position);
         
-                //follow the player!
+                //listen to the player!
                 if (distFromPlayer < followingRange)
                 {
+                    SetListening();
+                }
+                
+                showRhythm = false;
+            }
+        }
+        
+        //LISTENING -- worker listens for player to play chord
+        if (workerState == WorkerStates.LISTENING)
+        {
+            //looks at targetPos when not waving 
+            LookAtObject(player.transform.position, false);
+
+            //when hit beat, play work tune
+            if (showRhythm)
+            {
+                //add to listening beats
+                if (_guitarController.playerInputting)
+                {
+                    listeningBeats++;
+                }
+                
+                //play particles :)
+                if(musicNotesListening)
+                    musicNotesListening.Play();
+                
+                //check listening beats
+                if (listeningBeats > listeningBeatsNecessary)
+                {
                     SetFollowing();
+                }
+                
+                //get dist from player
+                distFromPlayer = Vector3.Distance(transform.position, player.transform.position);
+        
+                //player left -- return to work
+                if (distFromPlayer > followingRange)
+                {
+                    SetWorking();
                 }
                 
                 showRhythm = false;
@@ -88,7 +132,7 @@ public class Worker : RhythmProducer
             if (showRhythm)
             {
                 //get dist from player
-                float distFromPlayer = Vector3.Distance(transform.position, player.transform.position);
+                distFromPlayer = Vector3.Distance(transform.position, player.transform.position);
         
                 //time to return to work :'(
                 if (distFromPlayer > followingRange)
@@ -171,6 +215,17 @@ public class Worker : RhythmProducer
         }
     }
 
+    //listens to player
+    public void SetListening()
+    {
+        //set animation
+        if(npcAnimations)
+            npcAnimations.SetAnimator("following");
+        //set state
+        workerState = WorkerStates.LISTENING;
+        Debug.Log(gameObject.name + " is Listening...");
+    }
+
     //called from within working to follow player
     public void SetFollowing()
     {
@@ -232,6 +287,7 @@ public class Worker : RhythmProducer
         workerState = WorkerStates.WORKING;
         //turnon pickax
         pickAx.SetActive(true);
+        listeningBeats = 0;
     }
 
     //called upon victory
