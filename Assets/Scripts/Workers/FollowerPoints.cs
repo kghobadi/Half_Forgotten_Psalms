@@ -9,7 +9,7 @@ public class FollowerPoints : MonoBehaviour
 {
     public FollowerPoint[] allFollowerPoints;
     public AudioMixer mixer;
-    
+    public float workerAudioMin, workingAudioMax;
     private void Awake()
     {
         //fetch all follower points in children 
@@ -41,13 +41,15 @@ public class FollowerPoints : MonoBehaviour
     {
         float vol = 0;
         mixer.GetFloat("WorkerVol", out vol);
-        mixer.SetFloat("WorkerVol", vol + 1f);
+        if(vol < workingAudioMax)
+            mixer.SetFloat("WorkerVol", vol + 1f);
     }
     
     public void DecreaseWorkerVolume()
     {
         float vol = 0;
         mixer.GetFloat("WorkerVol", out vol);
-        mixer.SetFloat("WorkerVol", vol - 1f);
+        if(vol > workerAudioMin)
+            mixer.SetFloat("WorkerVol", vol - 1f);
     }
 }
