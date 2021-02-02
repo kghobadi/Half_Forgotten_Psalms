@@ -1,8 +1,9 @@
 ﻿<Properties StartupConfiguration="{8639B28C-2D31-6DC4-A2D4-45626C5E25A1}|">
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/IGFWInner.shader">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/PixelEffect.cs">
     <Files>
       <File FileName="Assets/NewImageEffectShader.shader" Line="36" Column="23" />
       <File FileName="Assets/Scripts/PixelateEffect.cs" Line="21" Column="2" />
+      <File FileName="Assets/Scripts/PixelEffect.cs" Line="5" Column="3" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
