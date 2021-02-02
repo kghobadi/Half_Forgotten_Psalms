@@ -1,0 +1,31 @@
+﻿<Properties StartupConfiguration="{8639B28C-2D31-6DC4-A2D4-45626C5E25A1}|">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/Player/PlayerMovement.cs">
+    <Files>
+      <File FileName="Assets/NewUnlitShader.shader" Line="1" Column="1" />
+      <File FileName="Assets/NewImageEffectShader.shader" Line="49" Column="29" />
+      <File FileName="Assets/Scripts/Player/PlayerMovement.cs" Line="9" Column="35" />
+    </Files>
+    <Pads>
+      <Pad Id="ProjectPad">
+        <State name="__root__">
+          <Node name="Half_Forgotten_Psalms" expanded="True">
+            <Node name="Assets" expanded="True">
+              <Node name="Scripts" expanded="True">
+                <Node name="Player" expanded="True">
+                  <Node name="PlayerMovement.cs" selected="True" />
+                </Node>
+              </Node>
+            </Node>
+          </Node>
+        </State>
+      </Pad>
+    </Pads>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.ItemProperties.Assembly-CSharp PreferredExecutionTarget="eb14d21f-9b5e-4130-92ea-a9e711415865" />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MultiItemStartupConfigurations />
+</Properties>
