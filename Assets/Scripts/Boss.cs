@@ -10,6 +10,7 @@ using Random = System.Random;
 /// </summary>
 public class Boss : RhythmProducer
 {
+    private GuitarController _guitarController;
     private CameraManager _cameraManager;
     private NPC.Animations _animations;
     
@@ -32,6 +33,7 @@ public class Boss : RhythmProducer
     {
         _animations = GetComponentInChildren<NPC.Animations>();
         _cameraManager = FindObjectOfType<CameraManager>();
+        _guitarController = FindObjectOfType<GuitarController>();
     }
 
     private void Update()
@@ -60,16 +62,21 @@ public class Boss : RhythmProducer
                         nearbyWorkers[i].SetReturning();
                     }
                 }
-                //enough workers, countdown til victory!!!
+                //enough workers... 
                 else
                 {
-                    //inc beats
-                    conflictBeats++;
-                    //enough to trigger ending?
-                    if (conflictBeats > beatsNec)
+                    //player is inputting! countdown til victory!!!
+                    if (_guitarController.playerInputting)
                     {
-                        TriggerEnding();
+                        //inc beats
+                        conflictBeats++;
+                        //enough to trigger ending?
+                        if (conflictBeats > beatsNec)
+                        {
+                            TriggerEnding();
+                        }
                     }
+                    
                 }
                 
                 Debug.Log("Conflict");
