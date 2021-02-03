@@ -11,30 +11,35 @@ using Random = System.Random;
 /// </summary>
 public class Worker : RhythmProducer
 {
+    private GuitarController _guitarController;
     private FollowerPoints _followerPoints;
     NPC.Animations npcAnimations;
     [Header("AI Settings")]
     public WorkerStates workerState;
     public enum WorkerStates
     {
-        IDLE, WORKING, FOLLOWING, RETURNING,
+        IDLE, WORKING, LISTENING, FOLLOWING, RETURNING, DANCING,
     }
     public LayerMask grounded;
     [HideInInspector]
     public NavMeshAgent myNavMesh;
     Vector3 origPosition;
     Vector3 targetPosition;
+    private float distFromPlayer;
     public float lookSmooth = 1f;
     public bool navOnStart;
     public FollowerPoint followPoint;
     public GameObject workObject;
     public float followingRange = 25f;
     public GameObject pickAx;
+    public int listeningBeats = 0;
+    public int listeningBeatsNecessary = 4;
 
     [Header("Voices & Singing")] 
     public AudioClip[] workingSounds;
     public AudioClip[] followingSounds;
     public ParticleSystem musicNotesWorking;
+    public ParticleSystem musicNotesListening;
     public ParticleSystem musicNotesFollowing;
     
     void Start()
@@ -42,6 +47,7 @@ public class Worker : RhythmProducer
         _followerPoints = FindObjectOfType<FollowerPoints>();
         myNavMesh = GetComponent<NavMeshAgent>();
         npcAnimations = GetComponentInChildren<NPC.Animations>();
+        _guitarController = FindObjectOfType<GuitarController>();
         
         origPosition = transform.position;
         SetWorking();
@@ -59,19 +65,57 @@ public class Worker : RhythmProducer
             if (showRhythm)
             {
                 //play work sound
-                PlayRandomSound(workingSounds, 0.25f);
+                PlayRandomSound(workingSounds, 0.1f);
                 
                 //play particles :)
                 if(musicNotesWorking)
                     musicNotesWorking.Play();
                 
                 //get dist from player
-                float distFromPlayer = Vector3.Distance(transform.position, player.transform.position);
+                distFromPlayer = Vector3.Distance(transform.position, player.transform.position);
         
-                //follow the player!
+                //listen to the player!
                 if (distFromPlayer < followingRange)
                 {
+                    SetListening();
+                }
+                
+                showRhythm = false;
+            }
+        }
+        
+        //LISTENING -- worker listens for player to play chord
+        if (workerState == WorkerStates.LISTENING)
+        {
+            //looks at targetPos when not waving 
+            LookAtObject(player.transform.position, false);
+
+            //when hit beat, play work tune
+            if (showRhythm)
+            {
+                //add to listening beats
+                if (_guitarController.playerInputting)
+                {
+                    listeningBeats++;
+                }
+                
+                //play particles :)
+                if(musicNotesListening)
+                    musicNotesListening.Play();
+                
+                //check listening beats
+                if (listeningBeats > listeningBeatsNecessary)
+                {
                     SetFollowing();
+                }
+                
+                //get dist from player
+                distFromPlayer = Vector3.Distance(transform.position, player.transform.position);
+        
+                //player left -- return to work
+                if (distFromPlayer > followingRange)
+                {
+                    SetWorking();
                 }
                 
                 showRhythm = false;
@@ -88,7 +132,7 @@ public class Worker : RhythmProducer
             if (showRhythm)
             {
                 //get dist from player
-                float distFromPlayer = Vector3.Distance(transform.position, player.transform.position);
+                distFromPlayer = Vector3.Distance(transform.position, player.transform.position);
         
                 //time to return to work :'(
                 if (distFromPlayer > followingRange)
@@ -112,7 +156,7 @@ public class Worker : RhythmProducer
             //stop running after we are close to position
             if (Vector3.Distance(transform.position, targetPosition) < myNavMesh.stoppingDistance + 1f)
             {
-                Debug.Log(gameObject.name + " returned to work");
+                //Debug.Log(gameObject.name + " returned to work");
                 SetWorking();
             }
         }
@@ -152,6 +196,34 @@ public class Worker : RhythmProducer
                 showRhythm = false;
             }
         }
+        
+        //DANCING -- ending celebration
+        if (workerState == WorkerStates.DANCING)
+        {
+            //on beat, play sound & check our distance from target and what should be my next move
+            if (showRhythm)
+            {
+                //play following sound
+                PlayRandomSound(followingSounds, 1f);
+                
+                //play particles :)
+                if(musicNotesFollowing)
+                    musicNotesFollowing.Play();
+                
+                showRhythm = false;
+            }
+        }
+    }
+
+    //listens to player
+    public void SetListening()
+    {
+        //set animation
+        if(npcAnimations)
+            npcAnimations.SetAnimator("following");
+        //set state
+        workerState = WorkerStates.LISTENING;
+        Debug.Log(gameObject.name + " is Listening...");
     }
 
     //called from within working to follow player
@@ -168,6 +240,9 @@ public class Worker : RhythmProducer
         followPoint.SetOccupied(true);
         //turnoff pickax
         pickAx.SetActive(false);
+        
+        //decrease worker vol
+        _followerPoints.DecreaseWorkerVolume();
     }
 
     //stops movement
@@ -178,7 +253,7 @@ public class Worker : RhythmProducer
         
         //set state
         workerState = WorkerStates.IDLE;
-        Debug.Log(gameObject.name + " is Idling...");
+        //Debug.Log(gameObject.name + " is Idling...");
     }
 
     //return to work point
@@ -190,8 +265,14 @@ public class Worker : RhythmProducer
             npcAnimations.SetAnimator("returning");
                     
         //reset follow point 
-        followPoint.SetOccupied(false);
-        followPoint = null;
+        if (followPoint)
+        {
+            followPoint.SetOccupied(false);
+            followPoint = null;
+        }
+        
+        //increase worker vol
+        _followerPoints.IncreaseWorkerVolume();
     }
 
     //set back to work
@@ -206,6 +287,19 @@ public class Worker : RhythmProducer
         workerState = WorkerStates.WORKING;
         //turnon pickax
         pickAx.SetActive(true);
+        listeningBeats = 0;
+    }
+
+    //called upon victory
+    public void SetDancing()
+    {
+        //stop nav mesh
+        myNavMesh.isStopped = true;
+        //anim
+        if(npcAnimations)
+            npcAnimations.SetAnimator("dancing");
+        //set state
+        workerState = WorkerStates.DANCING;
     }
 
     //base function for actually navigating to a point 
