@@ -1,32 +1,109 @@
 fileFormatVersion: 2
-guid: 6c8fd3c78dd6d451b9196050ff8b4460
+guid: 2002dfdda6988481b8578ca7aefc2530
 ModelImporter:
   serializedVersion: 23
   fileIDToRecycleName:
-    100000: pCone1
-    100002: pCone2
-    100004: pCone3
-    100006: pCylinder1
-    100008: pCylinder2
-    100010: transform1
-    100012: transform2
-    100014: transform3
-    100016: transform4
-    100018: //RootNode
-    400000: pCone1
-    400002: pCone2
-    400004: pCone3
-    400006: pCylinder1
-    400008: pCylinder2
-    400010: transform1
-    400012: transform2
-    400014: transform3
-    400016: transform4
-    400018: //RootNode
-    2100000: lambert1
-    2300000: pCylinder2
-    3300000: pCylinder2
-    4300000: pCylinder2
+    100000: Bulb
+    100002: Cabin
+    100004: DarkMetal
+    100006: //RootNode
+    100008: Glass
+    100010: Gold
+    100012: RedMetal
+    100014: RimBig1
+    100016: RimBig2
+    100018: RimSmall1
+    100020: RimSmall2
+    100022: Roof
+    100024: TurnDark
+    100026: TurnGold
+    100028: WheelBig1
+    100030: WheelBig2
+    100032: WheelSmall1
+    100034: WheelSmall2
+    100036: WhiteRing
+    400000: Bulb
+    400002: Cabin
+    400004: DarkMetal
+    400006: //RootNode
+    400008: Glass
+    400010: Gold
+    400012: RedMetal
+    400014: RimBig1
+    400016: RimBig2
+    400018: RimSmall1
+    400020: RimSmall2
+    400022: Roof
+    400024: TurnDark
+    400026: TurnGold
+    400028: WheelBig1
+    400030: WheelBig2
+    400032: WheelSmall1
+    400034: WheelSmall2
+    400036: WhiteRing
+    2100000: RedMetal
+    2100002: DarkMetal
+    2100004: WhiteMetal
+    2100006: Light
+    2100008: Gold
+    2100010: RedPaint
+    2100012: Roof
+    2100014: Glass
+    2100016: WheelMetal
+    2300000: Bulb
+    2300002: Cabin
+    2300004: DarkMetal
+    2300006: Glass
+    2300008: Gold
+    2300010: RedMetal
+    2300012: RimBig1
+    2300014: RimBig2
+    2300016: RimSmall1
+    2300018: RimSmall2
+    2300020: Roof
+    2300022: TurnDark
+    2300024: TurnGold
+    2300026: WheelBig1
+    2300028: WheelBig2
+    2300030: WheelSmall1
+    2300032: WheelSmall2
+    2300034: WhiteRing
+    3300000: Bulb
+    3300002: Cabin
+    3300004: DarkMetal
+    3300006: Glass
+    3300008: Gold
+    3300010: RedMetal
+    3300012: RimBig1
+    3300014: RimBig2
+    3300016: RimSmall1
+    3300018: RimSmall2
+    3300020: Roof
+    3300022: TurnDark
+    3300024: TurnGold
+    3300026: WheelBig1
+    3300028: WheelBig2
+    3300030: WheelSmall1
+    3300032: WheelSmall2
+    3300034: WhiteRing
+    4300000: RedMetal
+    4300002: DarkMetal
+    4300004: WhiteRing
+    4300006: Bulb
+    4300008: Gold
+    4300010: Cabin
+    4300012: Roof
+    4300014: Glass
+    4300016: TurnDark
+    4300018: TurnGold
+    4300020: RimSmall1
+    4300022: WheelSmall1
+    4300024: RimSmall2
+    4300026: WheelSmall2
+    4300028: RimBig1
+    4300030: WheelBig1
+    4300032: RimBig2
+    4300034: WheelBig2
   externalObjects: {}
   materials:
     importMaterials: 1
@@ -58,7 +135,7 @@ ModelImporter:
     isReadable: 1
   meshes:
     lODScreenPercentages: []
-    globalScale: 100
+    globalScale: 0.1
     meshCompression: 0
     addColliders: 0
     useSRGBMaterialColor: 1

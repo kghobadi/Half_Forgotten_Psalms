@@ -1,0 +1,193 @@
+fileFormatVersion: 2
+guid: f97f0b18676ea4af49150ca6f3900f24
+ModelImporter:
+  serializedVersion: 23
+  fileIDToRecycleName:
+    100000: Bulb
+    100002: Cabin
+    100004: DarkMetal
+    100006: //RootNode
+    100008: Glass
+    100010: Gold
+    100012: RedMetal
+    100014: RimBig1
+    100016: RimBig2
+    100018: RimSmall1
+    100020: RimSmall2
+    100022: Roof
+    100024: TurnDark
+    100026: TurnGold
+    100028: WheelBig1
+    100030: WheelBig2
+    100032: WheelSmall1
+    100034: WheelSmall2
+    100036: WhiteRing
+    400000: Bulb
+    400002: Cabin
+    400004: DarkMetal
+    400006: //RootNode
+    400008: Glass
+    400010: Gold
+    400012: RedMetal
+    400014: RimBig1
+    400016: RimBig2
+    400018: RimSmall1
+    400020: RimSmall2
+    400022: Roof
+    400024: TurnDark
+    400026: TurnGold
+    400028: WheelBig1
+    400030: WheelBig2
+    400032: WheelSmall1
+    400034: WheelSmall2
+    400036: WhiteRing
+    2100000: Light
+    2100002: RedPaint
+    2100004: DarkMetal
+    2100006: Glass
+    2100008: Gold
+    2100010: RedMetal
+    2100012: WheelMetal
+    2100014: Roof
+    2100016: WhiteMetal
+    2300000: Bulb
+    2300002: Cabin
+    2300004: DarkMetal
+    2300006: Glass
+    2300008: Gold
+    2300010: RedMetal
+    2300012: RimBig1
+    2300014: RimBig2
+    2300016: RimSmall1
+    2300018: RimSmall2
+    2300020: Roof
+    2300022: TurnDark
+    2300024: TurnGold
+    2300026: WheelBig1
+    2300028: WheelBig2
+    2300030: WheelSmall1
+    2300032: WheelSmall2
+    2300034: WhiteRing
+    3300000: Bulb
+    3300002: Cabin
+    3300004: DarkMetal
+    3300006: Glass
+    3300008: Gold
+    3300010: RedMetal
+    3300012: RimBig1
+    3300014: RimBig2
+    3300016: RimSmall1
+    3300018: RimSmall2
+    3300020: Roof
+    3300022: TurnDark
+    3300024: TurnGold
+    3300026: WheelBig1
+    3300028: WheelBig2
+    3300030: WheelSmall1
+    3300032: WheelSmall2
+    3300034: WhiteRing
+    4300000: Bulb
+    4300002: Cabin
+    4300004: DarkMetal
+    4300006: Glass
+    4300008: Gold
+    4300010: RedMetal
+    4300012: RimBig1
+    4300014: RimBig2
+    4300016: RimSmall1
+    4300018: RimSmall2
+    4300020: Roof
+    4300022: TurnDark
+    4300024: TurnGold
+    4300026: WheelBig1
+    4300028: WheelBig2
+    4300030: WheelSmall1
+    4300032: WheelSmall2
+    4300034: WhiteRing
+    2186277476908879412: ImportLogs
+  externalObjects: {}
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    importConstraints: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 0.1
+    meshCompression: 0
+    addColliders: 0
+    useSRGBMaterialColor: 1
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    preserveHierarchy: 0
+    indexFormat: 0
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+    previousCalculatedGlobalScale: 1
+    hasPreviousCalculatedGlobalScale: 0
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+    legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 0
+    blendShapeNormalImportMode: 1
+    normalSmoothingSource: 0
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 0
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

@@ -1,0 +1,60 @@
+newmtl RedMetal
+Kd 0.784314 0.062745 0.062745
+Ks 0.000000 0.000000 0.000000
+illum 2
+Ns 50.781250
+map_Kd red.png
+
+newmtl DarkMetal
+Kd 0.097656 0.097656 0.097656
+Ks 0.501961 0.501961 0.501961
+illum 2
+Ns 50.781250
+map_Kd dark.png
+
+newmtl WhiteMetal
+Kd 0.972549 0.972549 0.972549
+Ks 0.000000 0.000000 0.000000
+illum 2
+Ns 50.781250
+map_Kd white.png
+
+newmtl Light
+Ka 1.000000 0.981018 0.397726
+Kd 0.314934 0.242289 0.034022
+Ks 1.000000 1.000000 1.000000
+illum 2
+Ns 50.781250
+map_Ka light_em.png
+map_Kd light_diff.png
+
+newmtl Gold
+Kd 0.847059 0.690196 0.156863
+Ks 0.000000 0.000000 0.000000
+illum 2
+Ns 50.781250
+map_Kd gold.png
+
+newmtl RedPaint
+Kd 0.784314 0.062745 0.062745
+Ks 0.000000 0.000000 0.000000
+illum 2
+Ns 50.781250
+map_Kd red.png
+
+newmtl Roof
+Kd 0.097656 0.097656 0.097656
+illum 1
+map_Kd dark.png
+
+newmtl Glass
+Kd 1.000000 1.000000 1.000000
+illum 1
+map_Kd window.png
+
+newmtl WheelMetal
+Kd 0.470588 0.470588 0.470588
+Ks 0.000000 0.000000 0.000000
+illum 2
+Ns 50.781250
+map_Kd metal.png

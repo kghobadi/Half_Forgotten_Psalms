@@ -1,32 +1,104 @@
 fileFormatVersion: 2
-guid: 6c8fd3c78dd6d451b9196050ff8b4460
+guid: 01d79648f33174ff2af6fdc8fd70deb3
 ModelImporter:
   serializedVersion: 23
   fileIDToRecycleName:
-    100000: pCone1
-    100002: pCone2
-    100004: pCone3
-    100006: pCylinder1
-    100008: pCylinder2
-    100010: transform1
-    100012: transform2
-    100014: transform3
-    100016: transform4
-    100018: //RootNode
-    400000: pCone1
-    400002: pCone2
-    400004: pCone3
-    400006: pCylinder1
-    400008: pCylinder2
-    400010: transform1
-    400012: transform2
-    400014: transform3
-    400016: transform4
-    400018: //RootNode
-    2100000: lambert1
-    2300000: pCylinder2
-    3300000: pCylinder2
-    4300000: pCylinder2
+    100000: Backframe
+    100002: Car
+    100004: Glass
+    100006: Gold
+    100008: Knob
+    100010: //RootNode
+    100012: Platform
+    100014: Rim1
+    100016: Rim2
+    100018: Rim3
+    100020: Rim4
+    100022: Roof
+    100024: Turn1
+    100026: Turn2
+    100028: Wheel1
+    100030: Wheel2
+    100032: Wheel3
+    100034: Wheel4
+    400000: Backframe
+    400002: Car
+    400004: Glass
+    400006: Gold
+    400008: Knob
+    400010: //RootNode
+    400012: Platform
+    400014: Rim1
+    400016: Rim2
+    400018: Rim3
+    400020: Rim4
+    400022: Roof
+    400024: Turn1
+    400026: Turn2
+    400028: Wheel1
+    400030: Wheel2
+    400032: Wheel3
+    400034: Wheel4
+    2100000: RedMetal
+    2100002: CarBody
+    2100004: Mat
+    2100006: Gold
+    2100008: WhiteMetal
+    2100010: DarkMetal
+    2100012: WheelMetal
+    2100014: Roof
+    2300000: Backframe
+    2300002: Car
+    2300004: Glass
+    2300006: Gold
+    2300008: Knob
+    2300010: Platform
+    2300012: Rim1
+    2300014: Rim2
+    2300016: Rim3
+    2300018: Rim4
+    2300020: Roof
+    2300022: Turn1
+    2300024: Turn2
+    2300026: Wheel1
+    2300028: Wheel2
+    2300030: Wheel3
+    2300032: Wheel4
+    3300000: Backframe
+    3300002: Car
+    3300004: Glass
+    3300006: Gold
+    3300008: Knob
+    3300010: Platform
+    3300012: Rim1
+    3300014: Rim2
+    3300016: Rim3
+    3300018: Rim4
+    3300020: Roof
+    3300022: Turn1
+    3300024: Turn2
+    3300026: Wheel1
+    3300028: Wheel2
+    3300030: Wheel3
+    3300032: Wheel4
+    4300000: Backframe
+    4300002: Car
+    4300004: Glass
+    4300006: Gold
+    4300008: Knob
+    4300010: Platform
+    4300012: Rim1
+    4300014: Rim2
+    4300016: Rim3
+    4300018: Rim4
+    4300020: Roof
+    4300022: Turn1
+    4300024: Turn2
+    4300026: Wheel1
+    4300028: Wheel2
+    4300030: Wheel3
+    4300032: Wheel4
+    2186277476908879412: ImportLogs
   externalObjects: {}
   materials:
     importMaterials: 1
@@ -58,7 +130,7 @@ ModelImporter:
     isReadable: 1
   meshes:
     lODScreenPercentages: []
-    globalScale: 100
+    globalScale: 0.1
     meshCompression: 0
     addColliders: 0
     useSRGBMaterialColor: 1
