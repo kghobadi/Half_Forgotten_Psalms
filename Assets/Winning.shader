@@ -1,10 +1,9 @@
-﻿Shader "Custom/IGFWinner"
+﻿Shader "Hidden/Winning"
 {
-
     Properties
     {
         _MainTex ("Texture", 2D) = "white" {}
-        _PixelPro ("Pixel Amount", float) = 1
+        _Blend ("Blend it", float) = 0
     }
     SubShader
     {
@@ -40,18 +39,13 @@
             }
 
             sampler2D _MainTex;
-            float _PixelPro;
+            float _Blend;
 
             fixed4 frag (v2f i) : SV_Target
             {
-                float2 uv = i.uv;
-                uv.x *= _PixelPro;
-                uv.y *= _PixelPro;
-                uv.x = round(uv.x);
-                uv.x /= _PixelPro;
-                uv.y = round(uv.y);
-                uv.y /= _PixelPro;
-                fixed4 col = tex2D(_MainTex, uv);
+                fixed4 col = tex2D(_MainTex, i.uv);
+                // just invert the colors
+                col.rgb = (1 * _Blend) - col.rgb;
                 return col;
             }
             ENDCG
