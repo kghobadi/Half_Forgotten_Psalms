@@ -34,34 +34,42 @@ public class PlayerMovement : MonoBehaviour
 
     void MoveInputs()
     {
-        //set character rotation according to camera
-        transform.rotation = Quaternion.LookRotation(mainCam.transform.forward, Vector3.up);
-        
-        //get input * walk speed
-        float moveForwardBackward = Input.GetAxis("Vertical") * walkSpeed;
-        float moveLeftRight = Input.GetAxis("Horizontal") * walkSpeed;
-
-        //multiply input/speed * direction
-        Vector3 fwd = transform.forward * moveForwardBackward;
-        Vector3 side = transform.right * moveLeftRight;
-        Vector3 grav = Vector3.up * -9.81f;
-        //add the vectors together
-        movement = fwd + side + grav;
-        
-        //fade out movement ui
-        if (fwd.magnitude != 0 || side.magnitude != 0)
+       
+        if (Input.GetMouseButton(0))
         {
-            if (movementUI[0].gameObject.activeSelf)
+            //holding mouse button allows you to look around freely without rotating your character and moving 
+        }
+        //set character rotation according to camera
+        else
+        {
+            transform.rotation = Quaternion.LookRotation(mainCam.transform.forward, Vector3.up);
+            
+            //get input * walk speed
+            float moveForwardBackward = Input.GetAxis("Vertical") * walkSpeed;
+            float moveLeftRight = Input.GetAxis("Horizontal") * walkSpeed;
+
+            //multiply input/speed * direction
+            Vector3 fwd = transform.forward * moveForwardBackward;
+            Vector3 side = transform.right * moveLeftRight;
+            Vector3 grav = Vector3.up * -9.81f;
+            //add the vectors together
+            movement = fwd + side + grav;
+        
+            //fade out movement ui
+            if (fwd.magnitude != 0 || side.magnitude != 0)
             {
-                for (int i = 0; i < movementUI.Length; i++)
+                if (movementUI[0].gameObject.activeSelf)
                 {
-                    movementUI[i].FadeOut();
+                    for (int i = 0; i < movementUI.Length; i++)
+                    {
+                        movementUI[i].FadeOut();
+                    }
                 }
             }
-        }
         
-        //actually move char 
-        charController.Move(movement * Time.deltaTime );
+            //actually move char 
+            charController.Move(movement * Time.deltaTime );
+        }
     }
 
     void CameraInputs()

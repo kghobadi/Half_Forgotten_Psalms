@@ -34,6 +34,7 @@ public class Worker : RhythmProducer
     public GameObject pickAx;
     public int listeningBeats = 0;
     public int listeningBeatsNecessary = 4;
+    public KeyCode listeningKey;
 
     [Header("Voices & Singing")] 
     public AudioClip[] workingSounds;
@@ -50,7 +51,23 @@ public class Worker : RhythmProducer
         _guitarController = FindObjectOfType<GuitarController>();
         
         origPosition = transform.position;
+        SetRandomListener();
         SetWorking();
+    }
+
+    public void SetRandomListener()
+    {
+        //random int 
+        int randomGuitarInput = UnityEngine.Random.Range(0, _guitarController.allGuitarInputs.Length);
+
+        //get actual input struct
+        GuitarInput guitarInput = _guitarController.allGuitarInputs[randomGuitarInput];
+
+        //set listening key
+        listeningKey = guitarInput.inputKey;
+        //set my listening particles color 
+        ParticleSystem.MainModule listeningMain = musicNotesListening.main;
+        listeningMain.startColor = guitarInput.chordColor;
     }
 
     void Update()
@@ -94,7 +111,7 @@ public class Worker : RhythmProducer
             if (showRhythm)
             {
                 //add to listening beats
-                if (_guitarController.playerInputting)
+                if (_guitarController.currentKeys.Contains(listeningKey))
                 {
                     listeningBeats++;
                 }
@@ -113,7 +130,7 @@ public class Worker : RhythmProducer
                 distFromPlayer = Vector3.Distance(transform.position, player.transform.position);
         
                 //player left -- return to work
-                if (distFromPlayer > followingRange)
+                if (distFromPlayer > followingRange + 3f)
                 {
                     SetWorking();
                 }
