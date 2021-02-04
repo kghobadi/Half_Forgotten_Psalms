@@ -2,6 +2,16 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+[System.Serializable]
+public struct GuitarInput
+{
+    public KeyCode inputKey;
+    public GuitarController.Chords chordType;
+    public AudioClip[] chords;
+    public ParticleSystem chordParticles;
+    public Color chordColor;
+}
+
 /// <summary>
 /// Handles the Guitar Playing 
 /// </summary>
@@ -9,20 +19,14 @@ public class GuitarController : RhythmProducer
 {
     [Header("Guitar Sounds")] 
     public AudioClip[] openNotes;
-    public AudioClip[] Echords;
-    public AudioClip[] Fchords;
-    public AudioClip[] Gchords;
-    public AudioClip[] Bchords;
-    public AudioClip[] Cchords;
-    public AudioClip[] Achords;
+    public ParticleSystem bassParticles;
     
     [Header("Guitar Inputs")] 
     public bool playerInputting;
     public int keyPresses = 0;
-    public KeyCode[] inputKeys;
+    public GuitarInput[] allGuitarInputs;
     public List<KeyCode> currentKeys = new List<KeyCode>();
     
-    public Chords currentChord;
     public enum Chords
     {
         E, F, G, B, C, A
@@ -56,10 +60,16 @@ public class GuitarController : RhythmProducer
                     }
                 }
             }
-            
-            //clear the current keys list
-            currentKeys.Clear();
+
+            //show rhythm ends 
+            showRhythm = false;
         }
+
+        //click to strum -- this doesn't really sound good. feels a bit unnecessary for now?
+        // if (Input.GetMouseButtonDown(0))
+        // {
+        //     AnalyzeInputs();
+        // }
     }
 
     /// <summary>
@@ -71,32 +81,35 @@ public class GuitarController : RhythmProducer
         keyPresses = 0;
 
         //loop through all input keys
-        for (int i = 0; i < inputKeys.Length; i++)
+        for (int i = 0; i < allGuitarInputs.Length; i++)
         {
+            //input key of this Guitar Input 
+            KeyCode inputKey = allGuitarInputs[i].inputKey;
+            
             //check if key is just pressed down
-            if (Input.GetKeyDown(inputKeys[i]))
+            if (Input.GetKeyDown(inputKey))
             {
                 //only add if not already added
-                if(currentKeys.Contains(inputKeys[i]) == false)
-                    currentKeys.Add(inputKeys[i]);
+                if(currentKeys.Contains(inputKey) == false)
+                    currentKeys.Add(inputKey);
                 keyPresses++;
             }
             
             //check if key held
-            if (Input.GetKey(inputKeys[i]))
+            if (Input.GetKey(inputKey))
             {   
                 //only add if not already added
-                if(currentKeys.Contains(inputKeys[i]) == false)
-                    currentKeys.Add(inputKeys[i]);
+                if(currentKeys.Contains(inputKey) == false)
+                    currentKeys.Add(inputKey);
                 keyPresses++;
             }
             
             //check if key released
-            if (Input.GetKeyUp(inputKeys[i]))
+            if (Input.GetKeyUp(inputKey))
             {
                 //remove the key since its being released
-                if(currentKeys.Contains(inputKeys[i]))
-                    currentKeys.Remove(inputKeys[i]);
+                if(currentKeys.Contains(inputKey))
+                    currentKeys.Remove(inputKey);
             }
         }
         
@@ -116,70 +129,44 @@ public class GuitarController : RhythmProducer
     /// </summary>
     void AnalyzeInputs()
     {
-        //loop through currently press keys
+        //loop through currently pressed keys
         for (int i = 0; i < currentKeys.Count; i++)
         {
-            //play the chord array according to the pressed key
-            switch (currentKeys[i])
-            {
-                case KeyCode.T :
-                    PlayChords(Chords.E);
-                    break;
-                case KeyCode.Y :
-                    PlayChords(Chords.F);
-                    break;
-                case KeyCode.U :
-                    PlayChords(Chords.A);
-                    break;
-                case KeyCode.G :
-                    PlayChords(Chords.G);
-                    break;
-                case KeyCode.H :
-                    PlayChords(Chords.B);
-                    break;
-                case KeyCode.J :
-                    PlayChords(Chords.C);
-                    break;
-            }
+            //get the GuitarInput struct according to the key being pressed
+            GuitarInput guitarInput = GetGuitarInput(currentKeys[i]);
+            //play the correct audio array 
+            PlaySoundMultipleAudioSources(guitarInput.chords);
+            //play correct chord particles
+            guitarInput.chordParticles.Play();
             
         }
     }
 
     /// <summary>
-    /// Plays the correct audio array according to the passed Chord type. 
+    /// Takes an input key and returns a specific GuitarInput struct from allguitarInputs
     /// </summary>
-    /// <param name="chordCombo"></param>
-    void PlayChords(Chords chordCombo)
+    /// <param name="key"></param>
+    /// <returns></returns>
+    GuitarInput GetGuitarInput(KeyCode key)
     {
-        switch (chordCombo)
+        for (int i = 0; i < allGuitarInputs.Length; i++)
         {
-            case Chords.E:
-                PlaySoundMultipleAudioSources(Echords);
-                break;
-            case Chords.F:
-                PlaySoundMultipleAudioSources(Fchords);
-                break;
-            case Chords.G:
-                PlaySoundMultipleAudioSources(Gchords);
-                break;
-            case Chords.B:
-                PlaySoundMultipleAudioSources(Bchords);
-                break;
-            case Chords.C:
-                PlaySoundMultipleAudioSources(Cchords);
-                break;
-            case Chords.A:
-                PlaySoundMultipleAudioSources(Achords);
-                break;
+            KeyCode keyToCompare = allGuitarInputs[i].inputKey;
+            //is it the right key?
+            if (key == keyToCompare)
+            {
+                return allGuitarInputs[i];
+            }
         }
-
-        currentChord = chordCombo;
-        showRhythm = false;
+        
+        //just return an empty
+        GuitarInput guitarInput = new GuitarInput();
+        return guitarInput;
     }
 
     void PlayOpenNotes()
     {
         PlaySoundMultipleAudioSources(openNotes);
-        showRhythm = false;
+        bassParticles.Play();
     }
 }
